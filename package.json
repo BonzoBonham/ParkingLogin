@@ -4,7 +4,8 @@
   "description": "ParkingLogin",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/BonzoBonham/ParkingLogin/issues"
   },
-  "homepage": "https://github.com/BonzoBonham/ParkingLogin#readme"
+  "homepage": "https://github.com/BonzoBonham/ParkingLogin#readme",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.17.1",
+    "google-auth-library": "^5.2.2",
+    "mongoose": "^5.7.1"
+  }
 }
