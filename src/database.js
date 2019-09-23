@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const URI = 'mongodb://localhost/mern-task'
+const URI = 'mongodb://localhost/parking-db'
 mongoose
   .connect(URI, { useNewUrlParser: true, useFindAndModify: false })
   .then(db => console.log('DB is connected'))
