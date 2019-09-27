@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const path = require('path')
 
 router.get('/', async (req, res) => {
   const users = await User.find()
-  res.json(users)
+  res.sendFile('qr.html', {
+    root: path.join(__dirname, '../public')
+  })
 })
 
 // router.get('/:id', async (req, res) => {
