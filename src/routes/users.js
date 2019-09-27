@@ -10,10 +10,17 @@ router.get('/', async (req, res) => {
   })
 })
 
-// router.get('/:id', async (req, res) => {
-//   const user = await User.findById(req.params.id)
-//   res.json(user)
-// })
+router.post('/create', async (req, res) => {
+  let user = req.body.username
+  let password = req.body.password
+  const user = new User({
+    username,
+    password,
+    secret32: '',
+    uri: ''
+  })
+  res.json(user)
+})
 
 // router.post('/', async (req, res) => {
 //   const { title, description } = req.body

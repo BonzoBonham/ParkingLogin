@@ -7,11 +7,12 @@ const { mongoose } = require('./database')
 const app = express()
 
 app.set('port', process.env.PORT || 6969)
-app.set('views', path.join(__dirname, "public"))
+app.set('views', path.join(__dirname, 'public'))
 
 app.use(express.json())
 
-app.use('/api/users', require('./routes/api'))
+app.use('/api/users', require('./routes/users'))
+app.use('/api/auth', require('./routes/auth'))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
