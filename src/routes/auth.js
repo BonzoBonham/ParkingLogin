@@ -1,9 +1,8 @@
 const speakeasy = require('speakeasy')
 var QRCode = require('qrcode')
-const router = require('express').Router
+const express = require('express')
+const router = express.Router()
 
-router.use(BodyParser.json())
-router.use(BodyParser.urlencoded({ extended: true }))
 
 router.get('/generate-secret', (req, res) => {
   // save secret and uri on db

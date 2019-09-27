@@ -11,15 +11,15 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/create', async (req, res) => {
-  let user = req.body.username
+  let username = req.body.username
   let password = req.body.password
-  const user = new User({
+  const usert = new User({
     username,
     password,
     secret32: '',
     uri: ''
   })
-  res.json(user)
+  res.json(usert)
 })
 
 // router.post('/', async (req, res) => {
