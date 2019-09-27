@@ -9,6 +9,14 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  secret32: {
+    type: String,
+    required: true
+  },
+  uri: {
+    type: String,
+    required: true
   }
 })
 
