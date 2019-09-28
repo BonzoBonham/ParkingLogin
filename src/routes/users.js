@@ -23,7 +23,20 @@ router.post('/create', async (req, res) => {
       uri: secret.otpauth_url
     })
     await user.save()
-    res.send({ status: 'User created' })
+
+    let uri = 'pp'
+
+    const generateQR = async text => {
+      try {
+        uri = await QRCode.toDataURL(text)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    await generateQR(secret.otpauth_url)
+
+    res.send({ status: 'User created', uri })
   } else {
     res.send({ status: 'User not created, ERROR' })
   }

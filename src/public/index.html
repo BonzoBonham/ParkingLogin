@@ -28,7 +28,7 @@
           id="image"
           src=""
         />
-        <input id="token" style="visibility: hidden" type="text" />
+        <input id="token" style="visibility: hidden" type="enter" />
         <input
           id="enter"
           style="visibility: hidden"
@@ -86,9 +86,11 @@
           var email = document.getElementById('email').value
           var pwd = document.getElementById('pwd').value
 
+          var token = document.getElementById('token').value
+
           let response = await fetch('/api/users/token', {
             method: 'POST',
-            body: JSON.stringify({ username: email, password: pwd }),
+            body: JSON.stringify({ username: email, password: pwd, token }),
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json'
