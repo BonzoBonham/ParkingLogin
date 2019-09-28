@@ -15,28 +15,88 @@
       <!--<form class="login-container" method="GET">-->
       <p><input id="email" type="email" placeholder="Username" /></p>
       <p><input id="pwd" type="password" placeholder="Password" /></p>
-      <p><input id="lol" type="submit" value="Login" onclick="validate()" /></p>
+      <p>
+        <input id="lol" type="submit" value="Register" onclick="validate()" />
+      </p>
+      <p>
+        <input id="lolo" type="submit" value="Login" onclick="login()" />
+      </p>
+      <br />
+      <p>
+        <img
+          style="width: 200px; height: 200px; visibility: hidden"
+          id="image"
+          src=""
+        />
+        <input id="token" style="visibility: hidden" type="text" />
+        <input
+          id="enter"
+          style="visibility: hidden"
+          type="submit"
+          value="Login"
+          onclick="enter()"
+        />
+      </p>
       <!--</form>-->
 
       <script>
         function validate() {
-          // var email = document.getElementById("email").value;
-          // var pwd = document.getElementById("pwd").value;
-          // console.log(email);
-          // console.log(pwd);
-          // fetch('/api/users/create', {
-          //   method: 'POST',
-          //   body: JSON.stringify({ username: email, password: pwd }),
-          //   headers: {
-          //     Accept: 'application/json',
-          //     'Content-Type': 'application/json'
-          //   }
-          // })
-          //   .then(res => res.json())
-          //   .then(data => console.log(data));
-          fetch('/api/users/debug')
+          var email = document.getElementById('email').value
+          var pwd = document.getElementById('pwd').value
+          // console.log(email)
+          // console.log(pwd)
+
+          fetch('/api/users/create', {
+            method: 'POST',
+            body: JSON.stringify({ username: email, password: pwd }),
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          })
             .then(res => res.json())
             .then(data => console.log(data))
+        }
+
+        async function login() {
+          var email = document.getElementById('email').value
+          var pwd = document.getElementById('pwd').value
+
+          let response = await fetch('/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({ username: email, password: pwd }),
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          })
+          let data = await response.json()
+          if (data.status) {
+            document.getElementById('token').style.visibility = 'visible'
+            document.getElementById('enter').style.visibility = 'visible'
+            let image = document.getElementById('image')
+            image.style.visibility = 'visible'
+            image.src = data.uri
+          } else {
+            console.log('nanai cucas')
+          }
+        }
+
+        async function enter() {
+          var email = document.getElementById('email').value
+          var pwd = document.getElementById('pwd').value
+
+          let response = await fetch('/api/users/token', {
+            method: 'POST',
+            body: JSON.stringify({ username: email, password: pwd }),
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          })
+
+          let data = await response.json()
+          console.log(data)
         }
       </script>
     </div>
