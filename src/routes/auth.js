@@ -6,7 +6,7 @@ const User = require('../models/user')
 router.get('/generate', (req, res) => {
   // save secret and uri on db
   let secret = speakeasy.generateSecret({ length: 20 })
-  res.json({ secret: secret.base32, uri: secret.otpauth_url }) //dont return
+  res.json({ secret32: secret.base32, uri: secret.otpauth_url }) //dont return
 })
 
 router.post('/uri', (req, res) => {
@@ -16,7 +16,7 @@ router.post('/uri', (req, res) => {
 })
 
 router.get('/debug', (req, res) => {
-  let secret = req.body.secret
+  let secret = req.body.secret32
   let token = speakeasy.totp({
     secret: secret,
     encoding: 'base32'

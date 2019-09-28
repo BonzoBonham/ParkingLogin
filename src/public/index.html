@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>Login</title>
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta charset="utf-8" />
-  <title>Login</title>
-</head>
+  <body>
+    <div class="login">
+      <div class="login-triangle"></div>
 
-<body>
-  <div class="login">
-    <div class="login-triangle"></div>
+      <h2 class="login-header">Login</h2>
 
-    <h2 class="login-header">Login</h2>
+      <!--<form class="login-container" method="GET">-->
+      <p><input id="email" type="email" placeholder="Username" /></p>
+      <p><input id="pwd" type="password" placeholder="Password" /></p>
+      <p><input id="lol" type="submit" value="Login" onclick="validate()" /></p>
+      <!--</form>-->
 
-    <!--<form class="login-container" method="GET">-->
-    <p><input id="email" type="email" placeholder="Username" /></p>
-    <p><input id="pwd" type="password" placeholder="Password" /></p>
-    <p><input id="lol" type="submit" value="Login" onclick="validate()" /></p>
-    <!--</form>-->
-
-    <script>
-      function validate() {
-        var email = document.getElementById("email").value;
-        var pwd = document.getElementById("pwd").value;
-        console.log(email);
-        console.log(pwd);
-        fetch('/api/users/create', {
-          method: 'POST',
-          body: JSON.stringify({ username: email, password: pwd }),
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(res => res.json())
-          .then(data => console.log(data));
-      }
-    </script>
-  </div>
-</body>
-
+      <script>
+        function validate() {
+          // var email = document.getElementById("email").value;
+          // var pwd = document.getElementById("pwd").value;
+          // console.log(email);
+          // console.log(pwd);
+          // fetch('/api/users/create', {
+          //   method: 'POST',
+          //   body: JSON.stringify({ username: email, password: pwd }),
+          //   headers: {
+          //     Accept: 'application/json',
+          //     'Content-Type': 'application/json'
+          //   }
+          // })
+          //   .then(res => res.json())
+          //   .then(data => console.log(data));
+          fetch('/api/users/debug')
+            .then(res => res.json())
+            .then(data => console.log(data))
+        }
+      </script>
+    </div>
+  </body>
 </html>
