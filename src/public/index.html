@@ -55,7 +55,16 @@
             }
           })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+              console.log(data)
+              if (data.status) {
+                let image = document.getElementById('image')
+                image.style.visibility = 'visible'
+                image.src = data.uri
+              } else {
+                console.log('Not created')
+              }
+            })
         }
 
         async function login() {
@@ -75,8 +84,8 @@
             document.getElementById('token').style.visibility = 'visible'
             document.getElementById('enter').style.visibility = 'visible'
             let image = document.getElementById('image')
-            image.style.visibility = 'visible'
-            image.src = data.uri
+            image.style.visibility = 'hidden'
+            image.src = ''
           } else {
             console.log('nanai cucas')
           }

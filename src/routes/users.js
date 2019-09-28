@@ -36,9 +36,9 @@ router.post('/create', async (req, res) => {
 
     await generateQR(secret.otpauth_url)
 
-    res.send({ status: 'User created', uri })
+    res.send({ status: true, uri })
   } else {
-    res.send({ status: 'User not created, ERROR' })
+    res.send({ status: false })
   }
 })
 
@@ -55,19 +55,19 @@ router.post('/login', async (req, res) => {
     let dbUser = await User.findOne({ username, password })
 
     if (dbUser) {
-      let uri = 'pp'
+      // let uri = 'pp'
 
-      const generateQR = async text => {
-        try {
-          uri = await QRCode.toDataURL(text)
-        } catch (err) {
-          console.error(err)
-        }
-      }
+      // const generateQR = async text => {
+      //   try {
+      //     uri = await QRCode.toDataURL(text)
+      //   } catch (err) {
+      //     console.error(err)
+      //   }
+      // }
 
-      await generateQR(dbUser.uri)
+      // await generateQR(dbUser.uri)
 
-      res.json({ status: true, uri })
+      res.json({ status: true })
     } else {
       res.json({ status: false })
     }
